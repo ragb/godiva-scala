@@ -1,4 +1,4 @@
-package com.sphonic.wfm2.repo.dal
+package godiva.slick
 
 import slick.driver.JdbcDriver
 import slick.ast.TypedType

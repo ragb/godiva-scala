@@ -37,5 +37,5 @@ lazy val sprayProject = (project in file("spray"))
   .settings(commonSettings: _*)
   .settings(
     name := "godiva-spray",
-    libraryDependencies += sprayRouting % "provided")
+    libraryDependencies ++= Seq(sprayRouting % "provided", playJson % "provided"))
     .dependsOn(core)
