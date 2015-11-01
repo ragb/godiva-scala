@@ -8,7 +8,7 @@ trait Pagination {
   this: DriverComponent[JdbcDriver] with DefaultExecutionContext =>
   import driver.api._
 
-  implicit class PaginationExtensionMethods[T <: Table[_], U](query: Query[T, U, Seq]) {
+  implicit class PaginationExtensionMethods[T, U](query: Query[T, U, Seq]) {
     /**
      * Limits the query result to get a specific page
      * Note: Queries should be already sorted
