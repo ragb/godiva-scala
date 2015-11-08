@@ -19,8 +19,7 @@ val commonSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(core, slickProject,sprayProject)
-  
+  .aggregate(core, slickProject,sprayProject, playJsonProject)
 
 lazy val core = (project in file("core"))
   .settings(commonSettings: _*)
@@ -33,9 +32,18 @@ lazy val slickProject = (project in file("slick"))
     libraryDependencies += slick % "provided")
   .dependsOn(core)
 
+lazy val playJsonProject = (project in file("play-json"))
+  .settings(commonSettings:_*)
+  .settings(
+  name := "godiva-play-json",
+  libraryDependencies += playJson % "provided"
+  )
+  .dependsOn(core)
+
+  
 lazy val sprayProject = (project in file("spray"))
   .settings(commonSettings: _*)
   .settings(
     name := "godiva-spray",
     libraryDependencies ++= Seq(sprayRouting % "provided", playJson % "provided"))
-    .dependsOn(core)
+    .dependsOn(core, playJsonProject)
