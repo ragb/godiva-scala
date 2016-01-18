@@ -12,12 +12,12 @@ trait SchemaManagement {
   /**
    * Creates the database schema
    */
-  def createTables = database.run(tablesSchema.create)
+  def createTables = database.run(tablesSchema.create andThen DBIO.sequence(createAdditionalActions))
 
   /**
    *  Drops all tables from the database schema
    */
-  def dropTables = database.run(tablesSchema.drop)
+  def dropTables = database.run(DBIO.sequence(dropAdditionalActions) andThen tablesSchema.drop)
 
   /**
    * Creates tables in the schema if they not exist.

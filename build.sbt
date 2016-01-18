@@ -11,7 +11,7 @@ val commonSettings = Seq(
     "-unchecked",
     "-feature",
     "-Xlint",
-    "-Ywarn-unused-import",
+//    "-Ywarn-unused-import",
     "-language:implicitConversions",
     "-language:postfixOps",
     "-Xmax-classfile-name", "255" //due to pickling macros

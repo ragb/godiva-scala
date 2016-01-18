@@ -31,6 +31,9 @@ trait TablesSchema {
   def tables: Seq[TableQuery[_ <: Table[_]]]
   require(tables nonEmpty)
   final def tablesSchema: driver.SchemaDescription = tables.map(_.schema).reduce(_ ++ _)
+  def createAdditionalActions: Seq[DBIO[Int]] = Seq.empty
+  def dropAdditionalActions: Seq[DBIO[Int]] = Seq.empty
+
 }
 
 /**
