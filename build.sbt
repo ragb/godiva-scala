@@ -1,10 +1,9 @@
 import Dependencies._
 
-
 val commonSettings = Seq(
   organization := "com.ruiandrebatista.godiva",
   version := "0.1.0",
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.11.8",
   scalacOptions in Compile ++= Seq(
     "-encoding", "UTF-8",
     "-deprecation",
@@ -15,7 +14,8 @@ val commonSettings = Seq(
     "-language:implicitConversions",
     "-language:postfixOps",
     "-Xmax-classfile-name", "255" //due to pickling macros
-  ))
+  ),
+licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)

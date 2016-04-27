@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  val slickVersion = "3.1.0"
+  val slickVersion = "3.1.1"
   val sprayVersion = "1.3.3"
   val playJsonVersion = "2.4.2"
 
