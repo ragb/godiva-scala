@@ -2,7 +2,7 @@ import Dependencies._
 
 val commonSettings = Seq(
   organization := "com.ruiandrebatista.godiva",
-  version := "0.1.0",
+  version := "0.1.1",
   scalaVersion := "2.11.8",
   scalacOptions in Compile ++= Seq(
     "-encoding", "UTF-8",
@@ -19,7 +19,7 @@ licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 lazy val root = (project in file("."))
   .settings(commonSettings: _*)
-  .aggregate(core, slickProject,sprayProject, playJsonProject)
+  .aggregate(core, slickProject,sprayProject, playJsonProject, akkaHttpProject)
 
 lazy val core = (project in file("core"))
   .settings(commonSettings: _*)
@@ -40,10 +40,17 @@ lazy val playJsonProject = (project in file("play-json"))
   )
   .dependsOn(core)
 
-  
+
 lazy val sprayProject = (project in file("spray"))
   .settings(commonSettings: _*)
   .settings(
     name := "godiva-spray",
     libraryDependencies ++= Seq(sprayRouting % "provided", playJson % "provided"))
+    .dependsOn(core, playJsonProject)
+
+lazy val akkaHttpProject = (project in file("akka-http"))
+  .settings(commonSettings: _*)
+  .settings(
+    name := "godiva-akka-http",
+    libraryDependencies ++= Seq(akkaHttp % "provided", playJson % "provided", akkaHttpJson % "provided"))
     .dependsOn(core, playJsonProject)
