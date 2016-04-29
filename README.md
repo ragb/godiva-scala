@@ -6,6 +6,7 @@ Most of this code is used in various projects, altough this library itself is no
 
 This is a work in progress so expect more code and documentation in the future.
 
+
 ### Modules
 
 The project is composed of various modules, pick just the ones you need.
@@ -15,3 +16,25 @@ The project is composed of various modules, pick just the ones you need.
 * godiva-spray: spray utillities, now just contains pagination directives.
 * godiva-akkha-http, same as above, ported to akka-http
 * godiva-play-json: play json support, must for http serialisation.
+
+### Dependencies
+
+
+All modules are published to Bintray.
+
+If you are using **SBT** you can add my Bintray repository as follows:
+
+```
+
+resolvers += Resolver.bintrayRepo("batista", "maven")
+```
+
+
+All artifacts are published to the **com.ruiandrebatista.godiva** organisation.
+
+For instance, to depend on the **godiva-slick** module you'd do:
+
+```
+
+"com.ruiandrebatista.godiva" %% "godiva-slick" % godivaVersion
+```
