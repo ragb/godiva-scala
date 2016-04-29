@@ -13,3 +13,5 @@ The project is composed of various modules, pick just the ones you need.
 * godiva-core: core classes, dependency of all other modules. Now just contains pagination definitions.
 * godiva-slick: Slick Skafolding utilities and pagination support.
 * godiva-spray: spray utillities, now just contains pagination directives.
+* godiva-akkha-http, same as above, ported to akka-http
+* godiva-play-json: play json support, must for http serialisation.
