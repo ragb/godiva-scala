@@ -2,7 +2,7 @@ import Dependencies._
 
 val commonSettings = Seq(
   organization := "com.ruiandrebatista.godiva",
-  version := "0.1.1",
+  version := "0.1.2",
   scalaVersion := "2.11.8",
   scalacOptions in Compile ++= Seq(
     "-encoding", "UTF-8",
@@ -29,7 +29,8 @@ lazy val slickProject = (project in file("slick"))
   .settings(commonSettings: _*)
   .settings(
     name := "godiva-slick",
-    libraryDependencies += slick % "provided")
+    libraryDependencies += slick % "provided",
+  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full))
   .dependsOn(core)
 
 lazy val playJsonProject = (project in file("play-json"))
