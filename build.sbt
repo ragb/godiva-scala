@@ -18,7 +18,7 @@ val commonSettings = Seq(
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 lazy val root = (project in file("."))
-  .settings(commonSettings: _*)
+  .settings(publish := false)
   .aggregate(core, slickProject,sprayProject, playJsonProject, akkaHttpProject)
 
 lazy val core = (project in file("core"))
