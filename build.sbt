@@ -2,7 +2,7 @@ import Dependencies._
 
 val commonSettings = Seq(
   organization := "com.ruiandrebatista.godiva",
-  version := "0.1.2",
+  version := "0.2.0",
   scalaVersion := "2.12.4",
   scalacOptions in Compile ++= Seq(
     "-encoding", "UTF-8",
