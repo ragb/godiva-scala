@@ -1,18 +1,18 @@
 package godiva.slick
 
-import slick.driver.JdbcDriver
-import slick.profile.SqlProfile
+import slick.jdbc.JdbcProfile
+
 import scala.concurrent.ExecutionContext
 import scala.language.higherKinds
 
 /**
  * Provides the JDBC driver implementation
  */
-trait DriverComponent[+T <: JdbcDriver] {
+trait DriverComponent[+T <: JdbcProfile] {
   val driver: T
 }
 
-trait DatabaseComponent[+T <: JdbcDriver] {
+trait DatabaseComponent[+T <: JdbcProfile] {
   val database: T#API#Database
 }
 
@@ -21,7 +21,7 @@ trait DatabaseComponent[+T <: JdbcDriver] {
  * Note: take care when stacking traits of this kind to add all needed tables.
  */
 trait TablesSchema {
-  this: DriverComponent[JdbcDriver] =>
+  this: DriverComponent[JdbcProfile] =>
   import driver.api._
 
   /**
@@ -40,7 +40,7 @@ trait TablesSchema {
  * Utility trait to inject an implicit execution context
  */
 trait DefaultExecutionContext {
-  implicit val executionContext: ExecutionContext
+  implicit def executionContext: ExecutionContext
 }
 
 /**

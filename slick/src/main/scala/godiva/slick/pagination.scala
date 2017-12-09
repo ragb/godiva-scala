@@ -1,11 +1,11 @@
 package godiva.slick
 
-import slick.driver.JdbcDriver
+import slick.jdbc.JdbcProfile
 
 import godiva.core.pagination._
 
 trait Pagination {
-  this: DriverComponent[JdbcDriver] with DefaultExecutionContext =>
+  this: DriverComponent[JdbcProfile] with DefaultExecutionContext =>
   import driver.api._
 
   implicit class PaginationExtensionMethods[T, U](query: Query[T, U, Seq]) {

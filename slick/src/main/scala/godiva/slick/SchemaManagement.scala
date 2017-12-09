@@ -1,12 +1,11 @@
 package godiva.slick
 
-import slick.driver.JdbcDriver
-import scala.concurrent.ExecutionContext
+import slick.jdbc.JdbcProfile
 
 import slick.jdbc.meta.MTable
 
 trait SchemaManagement {
-  this: DriverComponent[JdbcDriver] with DatabaseComponent[JdbcDriver] with TablesSchema with DefaultExecutionContext =>
+  this: DriverComponent[JdbcProfile] with DatabaseComponent[JdbcProfile] with TablesSchema with DefaultExecutionContext =>
   import driver.api._
 
   /**
@@ -39,16 +38,17 @@ trait SchemaManagement {
   // Slick as no empty schema description
   // so we do it here.
   private object emptySchema extends driver.SchemaDescription {
-    protected override def createPhase1 = Seq.empty
-    protected override def createPhase2 = Seq.empty
-    protected override def dropPhase1 = Seq.empty
-    protected override def dropPhase2 = Seq.empty
+    protected override def createPhase1 = Iterable.empty
+    protected override def createPhase2 = Iterable.empty
+    protected override def dropPhase1 = Iterable.empty
+    protected override def dropPhase2 = Iterable.empty
+    protected def truncatePhase = Iterable.empty
   }
 
   private def dbioActionZero[T <: Effect]: SchemaDbIoAction[T] =
     DBIO.successful(()).asInstanceOf[SchemaDbIoAction[T]]
 
-  // Creates a composed DBIOAction which 
+  // Creates a composed DBIOAction which
   // Traverses all ttables in the schema, constructing a list with DDL instances.
   // DDL is then merged.
   private def foldWithMTables(predicate: Vector[MTable] => Boolean, fn: driver.SchemaDescription => SchemaDbIoAction[Effect.Schema]) = {
