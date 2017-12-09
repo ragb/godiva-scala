@@ -7,13 +7,13 @@ import godiva.core.pagination._
 
 trait PaginationDirectives {
 
-  val defaultPageSize = 10
+  val defaultPageSize = 10L
 
   def paginated: Directive1[PaginationRequest] = readPageParameters.tmap {
-    case (pageNumber, pageSize, pageTotals) => PaginationRequest(Page(pageNumber.getOrElse(1), pageSize.getOrElse(defaultPageSize)), pageTotals.getOrElse(true))
+    case (pageNumber, pageSize, pageTotals) => PaginationRequest(Page(pageNumber.getOrElse(1L), pageSize.getOrElse(defaultPageSize)), pageTotals.getOrElse(true))
   }
 
-  private val readPageParameters: Directive[(Option[Long], Option[Long], Option[Boolean])] = parameters("pageNumber".as[Long].?, "pageSize".as[Long].?, "pageTotals".as[Boolean].?)
+  private val readPageParameters: Directive[(Option[Long], Option[Long], Option[Boolean])] = parameters(("pageNumber".as[Long].?, "pageSize".as[Long].?, "pageTotals".as[Boolean].?))
 
 }
 
