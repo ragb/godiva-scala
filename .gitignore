@@ -2,3 +2,5 @@
 .DS_Store/
 target/
 
+.DS_Store
+/.ensime_cache/
